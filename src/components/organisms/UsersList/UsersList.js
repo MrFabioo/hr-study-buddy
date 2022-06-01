@@ -1,21 +1,30 @@
 import React from 'react';
-import { users } from 'data/users';
+// import PropTypes from 'prop-types';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import {
-  Wrapper,
-  StyledList,
-} from 'components/organisms/UsersList/UsersList.styled';
+import { StyledList } from './UsersList.styled';
+// import { UserShape } from 'types';
+import { Title } from 'components/atoms/Title/Title';
 
-const UsersList = () => {
+const UsersList = ({ users, deleteUser }) => {
   return (
-    <Wrapper>
+    <>
+      <Title>Students list</Title>
       <StyledList>
         {users.map((userData) => (
-          <UsersListItem userData={userData} />
+          <UsersListItem
+            deleteUser={deleteUser}
+            key={userData.name}
+            userData={userData}
+          />
         ))}
       </StyledList>
-    </Wrapper>
+    </>
   );
 };
+// Wywala APKE
+// UsersList.propTypes = {
+//   users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
+//   deleteUser: PropTypes.func,
+// };
 
 export default UsersList;
